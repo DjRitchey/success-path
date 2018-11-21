@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    binding.pry
     if @post.save
       current_user.posts << @post
       redirect_to posts_path
@@ -52,7 +53,7 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :title, :subtitle, :content, :category_ids)
+    params.require(:post).permit(:user_id, :title, :subtitle, :content, :data, :category_ids, categories_attributes: [:id, :tag])
   end
 
 end
