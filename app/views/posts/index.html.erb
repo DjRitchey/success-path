@@ -1,0 +1,13 @@
+<h1>Post Index</h1>
+
+<% @posts.each do |post| %>
+  <%= post.title %>
+  <%= post.subtitle %>
+  <%= "By: #{User.find_by(id: post.user_id).username}" %> <br/>
+  <%= post.content %> <br  />
+  <% post.categories.each do |category| %>
+  Tags: <%= category.tag %>
+  <% end %>
+  <%= link_to "Edit", edit_post_path(post) %>
+  <%= link_to "Delete", post_path(post), :method => "DELETE" %>
+<% end %>
