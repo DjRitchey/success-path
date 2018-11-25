@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181121152415) do
+ActiveRecord::Schema.define(version: 20181121185714) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "tag",        limit: 255
@@ -41,16 +41,20 @@ ActiveRecord::Schema.define(version: 20181121152415) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "title",      limit: 255
-    t.string   "subtitle",   limit: 255
-    t.string   "content",    limit: 255
-    t.binary   "data",       limit: 65535
-    t.string   "filename",   limit: 255
-    t.string   "mime_type",  limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",            limit: 4
+    t.string   "title",              limit: 255
+    t.string   "subtitle",           limit: 255
+    t.string   "content",            limit: 255
+    t.binary   "data",               limit: 65535
+    t.string   "filename",           limit: 255
+    t.string   "mime_type",          limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.datetime "deleted_at"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 8
+    t.datetime "image_updated_at"
   end
 
   add_index "posts", ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree

@@ -7,6 +7,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'paperclip'
 gem 'delayed_job_active_record'
 gem 'devise_zxcvbn'
+gem 'aws-sdk'
+gem 'dotenv'
+# gem 'aws-sdk-s3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
