@@ -12,14 +12,19 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: 5
-  username: root
-  password: Piper0301!
-  socket: /tmp/mysql.sock
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
 
 development:
-  <<: *default
-  database: success_path_development
+    adapter: mysql2
+    encoding: utf8
+    database: djtest
+    username: root
+    password: Piper0301!
+    host: djtest.c7lkoargxoqg.us-east-2.rds.amazonaws.com
+    port: 3306
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -47,8 +52,13 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+
 production:
-  <<: *default
-  database: success_path_production
-  username: success_path
-  password: <%= ENV['SUCCESS_PATH_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
